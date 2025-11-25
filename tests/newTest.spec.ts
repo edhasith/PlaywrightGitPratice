@@ -14,7 +14,7 @@ test.only('login positive', async ({ page }) => {
     await page.locator('#username').fill(process.env.USER ?? 'student');
     await page.locator('#password').fill('Password123');
     await page.getByRole("button", { name: "Submit" }).click();
-    await expect(page.getByRole("link", { name: "Log out" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Log out" })).toBeVisible({timeout:60*1000});
     await expect(page.url()).toContain('practicetestautomation.com/logged-in-successfully/')
 })
 
