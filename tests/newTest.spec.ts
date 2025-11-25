@@ -14,8 +14,8 @@ test.only('login positive', async ({ page }) => {
     await page.locator('#username').fill(process.env.USER ?? 'student');
     await page.locator('#password').fill('Password123');
     await page.getByRole("button", { name: "Submit" }).click();
-    await expect(page.url()).toContain('practicetestautomation.com/logged-in-successfully/')
     await expect(page.getByRole("link", { name: "Log out" })).toBeVisible();
+    await expect(page.url()).toContain('practicetestautomation.com/logged-in-successfully/')
 })
 
 test('login bad username', async ({ page }) => {
@@ -64,27 +64,28 @@ test('edit the 1st one', async ({ page }) => {
 });
 
 test('remove added tab ', async ({ page }) => {
-  await page.locator('p a').nth(1).click();
+    await page.locator('p a').nth(1).click();
     console.log(await page.locator('input.input-field').count());
     await page.getByRole('button', { name: "Add" }).click();
     await page.locator('input.input-field').nth(1).fill('Tanu');
     await page.getByRole('button', { name: "Save" }).click();
-    await page.getByRole('button',{name:"Remove"}).click();
+    await page.getByRole('button', { name: "Remove" }).click();
     await expect(page.locator('#confirmation')).toHaveText('Row 2 was removed');
     expect(await page.locator('input.input-field').nth(1)).toBeHidden();
-    
+
 });
 
 test('filter only java', async ({ page }) => {
     await page.locator('p a').nth(2).click();
-    await page.locator('label', {hasText:'Java'}).click();
+    await page.locator('label', { hasText: 'Java' }).click();
     const langcount = await page.locator('//tr/td[3]').count()
-     for(let i = 0 ; i< langcount ; i++){
-         if(await page.locator('//tr/td[3]').nth(i).isVisible()){
-         console.log(await page.locator('//tr/td[3]').nth(i).textContent())
-         await expect(page.locator('//tr/td[3]').nth(i)).toHaveText('Java')}
+    for (let i = 0; i < langcount; i++) {
+        if (await page.locator('//tr/td[3]').nth(i).isVisible()) {
+            console.log(await page.locator('//tr/td[3]').nth(i).textContent())
+            await expect(page.locator('//tr/td[3]').nth(i)).toHaveText('Java')
+        }
     }
-    
+
 
 
 });
