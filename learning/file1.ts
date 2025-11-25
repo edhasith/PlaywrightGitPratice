@@ -20,19 +20,27 @@ function repeat(word:string){
 repeat(name)
 
 
+interface Ob1 {
+    name:string,
+    age:number,
+    jobless: boolean
 
-function sort(){
-    const arr1 = [1,2,3,5,8];
-    const arr2 = [4,7,9];
-    let arr3 = [...arr1,...arr2];
-    console.log(arr3);
+}
 
-    arr3 =arr3.filter(x => x%2===0)
-    console.log(arr3);
+const person1: Ob1 = {
+    name : 'Hasith',
+    age : 30 ,
+    jobless : false
+}
+
+const person2: Ob1 = {
+    name : 'Jon',
+    age : 45 ,
+    jobless : true
+}
 
 
-
-} 
-
+let peeps : Ob1[] = [person1, person2]
 
 
+console.log(`${person1.name} is jobless =  ${person1.jobless}`)
