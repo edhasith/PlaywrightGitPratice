@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
 
 test.only('login positive', async ({ page }) => {
     await page.locator('p a').nth(0).click();
-    await page.locator('#username').fill(process.env.USER ?? 'student');
+    await page.locator('#username').fill(process.env.MYUSERF ?? 'student');
     await page.locator('#password').fill('Password123');
     await page.getByRole("button", { name: "Submit" }).click();
     await expect(page.getByRole("link", { name: "Log out" })).toBeVisible({timeout:60*1000});
@@ -20,7 +20,7 @@ test.only('login positive', async ({ page }) => {
 
 test('login bad username', async ({ page }) => {
     await page.locator('p a').nth(0).click();
-    await page.locator('#username').fill(process.env.USER ?? 'vataaaaa');
+    await page.locator('#username').fill(process.env.MYUSERF ?? 'vataaaaa');
     await page.locator('#password').fill('Password123');
     await page.getByRole("button", { name: "Submit" }).click();
     await expect(page.locator('#error')).toHaveText('Your username is invalid!')
@@ -29,7 +29,7 @@ test('login bad username', async ({ page }) => {
 
 test('login fail password', async ({ page }) => {
     await page.locator('p a').nth(0).click();
-    await page.locator('#username').fill(process.env.USER ?? 'student');
+    await page.locator('#username').fill(process.env.MYUSERF ?? 'student');
     await page.locator('#password').fill('asdwasdweadad');
     await page.getByRole("button", { name: "Submit" }).click();
     await expect(page.locator('#error')).toHaveText('Your password is invalid!')
